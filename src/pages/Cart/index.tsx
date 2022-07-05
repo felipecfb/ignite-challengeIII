@@ -51,7 +51,7 @@ const Cart = (): JSX.Element => {
 
   return (
     <Container>
-      {cart.map((products) => {
+      {cartFormatted.map((products) => {
         return (
           <ProductTable key={products.id}>
             <thead>
@@ -70,7 +70,7 @@ const Cart = (): JSX.Element => {
                 </td>
                 <td>
                   <strong>{products.title}</strong>
-                  <span>{}</span>
+                  <span>{products.priceFormatted}</span>
                 </td>
                 <td>
                   <div>
@@ -78,6 +78,7 @@ const Cart = (): JSX.Element => {
                       type="button"
                       data-testid="decrement-product"
                       onClick={() => handleProductDecrement(products)}
+                      disabled={products.amount === 1}
                     >
                       <MdRemoveCircleOutline size={20} />
                     </button>
@@ -97,7 +98,7 @@ const Cart = (): JSX.Element => {
                   </div>
                 </td>
                 <td>
-                  <strong>{}</strong>
+                  <strong>{products.subtotal}</strong>
                 </td>
                 <td>
                   <button
